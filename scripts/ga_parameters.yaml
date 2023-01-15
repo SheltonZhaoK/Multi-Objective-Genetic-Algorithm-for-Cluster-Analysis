@@ -1,0 +1,16 @@
+---
+
+#indPb    - probability of chromosome to be mutated.
+#mutPb    - probability of single genes of chromosome to be mutated.
+#cxPb     - probability of chromosome to be crossovered.
+#numGen   - number of generations.
+#sizePop  - size of populations.
+#crowding - degree of similarity from parents, the higher the similar.
+
+MOEA:
+   indPb: 1.0
+   mutPb: 0.07
+   cxPb: 0.8
+   numGen: 100
+   sizePop: 100
+   crowding: 0.3
