@@ -23,7 +23,7 @@ To generate scRNA-seq reference datesets for internal validation, please execute
 
 ```
 mkdir scrna_benchmarks_umap
-Rscript ../scripts/generate_scrnaseq_benchmarks.R
+Rscript ../scripts/generate_scrnaseq_reference.R
 ```
 
 ### scRNA-seq synthetic datasets
