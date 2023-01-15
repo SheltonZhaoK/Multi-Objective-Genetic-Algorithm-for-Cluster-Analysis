@@ -1,5 +1,5 @@
 # Tutorial: Multi-Objective Genetic Algorithm for Cluster Analysis 
-This package aims to cluster single-cell RNA sequencing transcriptomes using multi-objective genetic algorithm.\ \
+This package aims to cluster single-cell RNA sequencing transcriptomes using multi-objective genetic algorithm.  
 The tutorial is arranged as follows:
 1. Dependency requirements
 2. Data Preparation
