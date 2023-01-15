@@ -48,7 +48,7 @@ Three sample executions files are provided in "./scripts".
 
 All experiments related to Seurat clustering are implemented in R, and other algorithms are implemented in Python. If you are interested how the algorithms are implemented, please look at "./scripts/clusterer.py"
 
-To run Seurat clustering for internal validation. Please run the following command. The external validation of Seurat is performed when generating the synthetic data.  
+To run Seurat clustering for internal validation. Please run the following command. The labels computed by Seurat for external validation are generated when created synthetic datasets. Please check the labels file.
 ```
 Rscript test_clustering_seurat.R
 ```
