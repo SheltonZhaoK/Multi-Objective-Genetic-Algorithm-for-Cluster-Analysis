@@ -44,3 +44,21 @@ Rscript ../../scripts/generate_metamorphic_datasets.R
 ```
 
 ## Test Demo
+Three sample executions files are provided in "./scripts".
+
+All experiments related to Seurat clustering is implemented in R, and other algorithms are implemented in Python. If you are interested how the algorithms are implemented, please look at "./scripts/clusterer.py"
+
+To run Seurat clustering for internal validation. Please run the following command. The external validation of Seurat is performed when generating the synthetic data.  
+```
+Rscript test_clustering_seurat.R
+```
+
+Metamorphic testing in Seurat uses a different workflow. Please run the following command.
+```
+Rscript test_metamorphic_seurat.R
+```
+
+To run MOGA, SOGA, Kmeans, and Scanpy for clustering. Please run the following command. The example presented is external validation, and user can change the code with different input data to perform external validation and metamorphic testing.
+```
+python3 test_scrnaseq_benchmarks.py
+```
