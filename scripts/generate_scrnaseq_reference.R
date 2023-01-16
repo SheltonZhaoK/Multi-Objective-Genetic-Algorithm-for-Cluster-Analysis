@@ -9,7 +9,7 @@ dataList = run_log(dataList)
 dataList = select_hvg(dataList)
 dataList = scale_data(dataList)
 dataList = run_pca(dataList, numComponents = 10)
-dataList = run_tsne(dataList, numDimensions = 10)
+dataList = run_umap(dataList, numDimensions = 10)
 names = names(dataList)
 for (i in 1:length(names))
 {
