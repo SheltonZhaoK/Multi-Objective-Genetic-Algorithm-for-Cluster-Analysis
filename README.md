@@ -65,7 +65,7 @@ Metamorphic testing in Seurat uses a different workflow. Please execute the foll
 Rscript test_metamorphic_seurat.R 1
 ```
 
-To run MOGA, SOGA, Kmeans, and Scanpy for clustering. Please execute the following command in "./scripts". The example presented is external validation, and user can change the code with different input data to perform external validation and metamorphic testing.
+To run MOGA, SOGA, Kmeans, and Scanpy for clustering. Please execute the following command in "./scripts". The example presented is internal validation, and user can change the code with different input data to perform external validation and metamorphic testing.
 ```
 python3 test_scrnaseq_benchmarks.py
 ```
