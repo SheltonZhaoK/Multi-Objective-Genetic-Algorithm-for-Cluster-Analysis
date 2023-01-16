@@ -16,7 +16,7 @@ dataList = run_clustering_workflow(dataList, method, transformation, seed = seed
 
 resultsTable = create_internal_cluster_validation_report(dataList, method)
 
-path = paste("../output/seraut/",toupper(method), "_CLUSTERING_" ,toupper(transformation),seed , ".csv", sep ="") 
+path = paste("../output/seraut_clustering/",toupper(method), "_CLUSTERING_" ,toupper(transformation),seed , ".csv", sep ="") 
 
 write.csv(resultsTable, file = path, row.names= F, quote = F)
 

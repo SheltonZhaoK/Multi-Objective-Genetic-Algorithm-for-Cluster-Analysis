@@ -6,7 +6,7 @@ from validator import *
 from visualizer import *
 from preprocesser import *
 
-def main(dirName, mr, jobId):
+def main(dirName):
    report = pd.DataFrame(columns = ['Benchmark', 'Instance #', 'Attribute #',\
          'Cluster #','ga-sw', 'k-sw', 'phg-sw', 'scp-sw'])
 
@@ -47,10 +47,10 @@ def main(dirName, mr, jobId):
          "{:.2f}".format(silhouette_k), "{:.2f}".format(silhouette_phg), "{:.2f}".format(silhouette_scp)]
 
       index += 1
-
+      break #only run for one dataset for demo
    fileName = '../output/test_scrna_benchmarks.csv'
    report.to_csv(fileName)
    
 if __name__ == '__main__':
-   dirName = '../data/scrna_benchmarks_umap'
+   dirName = '../data/scrna_benchmarks_umap/'
    main(dirName)

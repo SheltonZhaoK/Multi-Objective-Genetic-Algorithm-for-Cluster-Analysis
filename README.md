@@ -51,12 +51,13 @@ All experiments related to Seurat clustering are implemented in R, and other alg
 
 To run Seurat clustering for internal validation. Please execute the following command in "./scripts". The labels computed by Seurat for external validation are generated when creating synthetic datasets. Please check the labels file.
 ```
-Rscript test_clustering_seurat.R
+mkdir ../output ../output/seraut_clustering
+Rscript test_clustering_seurat.R 1
 ```
 
 Metamorphic testing in Seurat uses a different workflow. Please execute the following command in "./scripts".
 ```
-Rscript test_metamorphic_seurat.R
+Rscript test_metamorphic_seurat.R 1
 ```
 
 To run MOGA, SOGA, Kmeans, and Scanpy for clustering. Please execute the following command in "./scripts". The example presented is external validation, and user can change the code with different input data to perform external validation and metamorphic testing.
