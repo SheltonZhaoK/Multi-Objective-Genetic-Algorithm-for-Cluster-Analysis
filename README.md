@@ -9,6 +9,8 @@ The tutorial is arranged as follows:
 ## Dependency requirements
 The scripts are written in R and Python. In R, the following packages are needed: matrix, splatter, scater, scrnabench, and aricode. In python, the following packages are needed: scanpy, numpy, pandas, deap, scipy, sklearn, scoop, numba, umap.umap_, validclust, seaborn, and matplotlib. 
 
+Please make sure your R version >= 4.0 and all packages are up to date.
+
 ## Data Preparation
 Data are generated and preprocessed in R. To generate data, please, create a directory called 'data'. If you are in "./scripts", please execute the followings.
 ```
