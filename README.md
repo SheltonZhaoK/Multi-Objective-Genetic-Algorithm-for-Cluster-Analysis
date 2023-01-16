@@ -49,7 +49,7 @@ Three sample executions files are provided in "./scripts".
 
 All experiments related to Seurat clustering are implemented in R, and other algorithms are implemented in Python. If you are interested how the algorithms are implemented, please look at "./scripts/clusterer.py". 
 
-Before running the testing demo, please generate output directory by the following command:
+Before running the testing demo, please generate output directory by the following command if you are in "./scripts":
 ```
 mkdir ../output
 ```
