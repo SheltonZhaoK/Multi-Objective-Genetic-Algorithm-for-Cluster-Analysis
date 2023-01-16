@@ -52,5 +52,5 @@ def main(dirName, mr, jobId):
    report.to_csv(fileName)
    
 if __name__ == '__main__':
-   dirName = '../data/scrna_benchmarks_umap
+   dirName = '../data/scrna_benchmarks_umap'
    main(dirName)
