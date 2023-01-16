@@ -3,7 +3,7 @@ dataDir = '../data'
 outputDir = "../data/scrna_benchmarks_umap"
 datasets = download_data(path = dataDir)
 dataList = extract_datasets(datasets)
-dataList = preprocess(dataList)
+dataList = filter_data(dataList)
 dataList = annotate_datasets(dataList)
 dataList = run_log(dataList)
 dataList = select_hvg(dataList)

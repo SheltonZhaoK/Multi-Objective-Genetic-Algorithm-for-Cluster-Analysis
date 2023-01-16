@@ -7,7 +7,7 @@ The tutorial is arranged as follows:
 3. Test demo
 
 ## Dependency requirements
-The scripts are written in R and Python. In R, the following packages are needed: splatter, scater, scrnabench, and aricode. In python, the following packages are needed: scanpy, numpy, pandas, deap, scipy, sklearn, scoop, numba, umap.umap_, validclust, seaborn, and matplotlib. 
+The scripts are written in R and Python. In R, the following packages are needed: matrix, splatter, scater, scrnabench, and aricode. In python, the following packages are needed: scanpy, numpy, pandas, deap, scipy, sklearn, scoop, numba, umap.umap_, validclust, seaborn, and matplotlib. 
 
 ## Data Preparation
 Data are generated and preprocessed in R. To generate data, please, create a directory called 'data'. If you are in "./scripts", please execute the followings.
