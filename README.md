@@ -40,7 +40,8 @@ To generate scRNA-seq reference datasets for metamorphic testing, please execute
 mkdir metamorphic_test
 cd metamorphic_test
 mkdir 1 2 3 4 5 6
-Rscript ../../scripts/generate_metamorphic_datasets.R
+cd ..
+Rscript ../scripts/generate_metamorphic_datasets.R
 ```
 
 ## Test Demo
