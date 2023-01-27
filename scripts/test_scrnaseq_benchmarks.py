@@ -30,7 +30,7 @@ def main(dirName):
       data, cellId = read_scrnaseq_data(dataFile)
       numCenters = numCenters_list[index]
       
-      ga = run_so_gakmeans(datasets = data, numCenters = numCenters, numGen = 350, sizePop = 600)
+      ga = run_mo_gakmeans(datasets = data, numCenters = numCenters, numGen = 350, sizePop = 600)
       ga.assign_memberships(data)
       
       kmeans = run_kmeans(data, numCenters,maxiter = 350)
