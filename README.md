@@ -75,7 +75,7 @@ python3 test_scrnaseq_benchmarks.py
 
 ## Citation
 To cite this work:
-'''
+```
  @article{Zhao_Grayson_Khuri_2023,
   title={Multi-Objective Genetic Algorithm for Cluster Analysis of Single-Cell Transcriptomes}, 
   volume={13}, rights={http://creativecommons.org/licenses/by/3.0/}, 
@@ -90,4 +90,4 @@ To cite this work:
   month={Feb}, 
   pages={183}, 
   language={en} }
-'''
+```
