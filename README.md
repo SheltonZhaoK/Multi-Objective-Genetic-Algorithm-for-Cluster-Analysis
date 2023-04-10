@@ -1,4 +1,5 @@
 # Tutorial: Multi-Objective Genetic Algorithm for Cluster Analysis 
+![MOGA](./MOEA.png)
 This package aims to cluster single-cell RNA sequencing transcriptomes using multi-objective genetic algorithm.
 
 The tutorial is arranged as follows:
@@ -71,3 +72,22 @@ To run MOGA, SOGA, Kmeans, and Scanpy for clustering. Please execute the followi
 ```
 python3 test_scrnaseq_benchmarks.py
 ```
+
+## Citation
+To cite this work:
+'''
+ @article{Zhao_Grayson_Khuri_2023,
+  title={Multi-Objective Genetic Algorithm for Cluster Analysis of Single-Cell Transcriptomes}, 
+  volume={13}, rights={http://creativecommons.org/licenses/by/3.0/}, 
+  ISSN={2075-4426}, 
+  url={https://www.mdpi.com/2075-4426/13/2/183}, 
+  DOI={10.3390/jpm13020183},
+  number={22}, 
+  journal={Journal of Personalized Medicine}, 
+  publisher={Multidisciplinary Digital Publishing Institute}, 
+  author={Zhao, Konghao and Grayson, Jason M. and Khuri, Natalia}, 
+  year={2023}, 
+  month={Feb}, 
+  pages={183}, 
+  language={en} }
+'''
