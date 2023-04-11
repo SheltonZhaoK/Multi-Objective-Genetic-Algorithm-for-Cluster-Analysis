@@ -1,5 +1,4 @@
 library(scrnabench)
-
 modify_gene_counts <- function(dataList)
 {
   if(is.list(dataList)){

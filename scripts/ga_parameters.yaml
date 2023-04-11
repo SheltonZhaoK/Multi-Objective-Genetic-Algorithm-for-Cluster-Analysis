@@ -1,5 +1,4 @@
 ---
-
 #indPb    - probability of chromosome to be mutated.
 #mutPb    - probability of single genes of chromosome to be mutated.
 #cxPb     - probability of chromosome to be crossovered.
