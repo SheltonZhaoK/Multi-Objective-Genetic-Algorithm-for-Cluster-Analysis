@@ -1,4 +1,4 @@
-import random, time, phenograph, yaml, multiprocessing
+import random, time, phenograph, yaml, multiprocessing, sys, os
 
 import scanpy as sc
 import numpy as np
@@ -6,16 +6,34 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from deap import base, creator, tools, algorithms
-from scipy.spatial import distance
 from sklearn.cluster import KMeans
-from scoop import futures
-from numba import jit, cuda
 from math import dist
 
-import clusteringObject as co
+sys.path.append(os.path.dirname(__file__))
 from validator import *
 
-with open('./ga_parameters.yaml') as file:
+class ClusteringObject:
+   def __init__(self, centers,  intraclusterDistance, time, fitness):
+      self.centers = centers
+      self.memberships = []
+      self.intraclusterDistance = intraclusterDistance
+      self.time = time
+      self.fitness = fitness
+
+   def print_report(self):
+      print('fitness: %s \ntime(second): %f ' % (str(self.intraclusterDistance), self.time))
+      print("centers:", self.centers, '\n' )
+
+   def assign_memberships(self, data):
+      data = data.values.tolist()
+      for i in range(0, len(data)):
+         distanceList = []
+         for j in range(0,len(self.centers)):
+            distanceList.append(dist(data[i],self.centers[j]))
+         minDistance = min(distanceList)
+         self.memberships.append(distanceList.index(minDistance))
+
+with open('/deac/csc/khuriGrp/zhaok220/drug/scripts/MOGA/scripts/ga_parameters.yaml') as file:
    params = yaml.load(file, Loader=yaml.FullLoader)['MOEA']
 
 def reshape_chromosome(chromosome, numCenter):
@@ -56,7 +74,7 @@ def separation(pop):
       interclusterDistance += counts[i] * dist(listOfCenters[i], dataCenter)
    return interclusterDistance,
    
-def compactness_separation(pop):
+def compactness_separation(pop, numCenter, data, dataCenter):
    intraclusterDistance = 0
    interclusterDistance = 0
    listOfCenters = reshape_chromosome(pop, numCenter)
@@ -117,7 +135,7 @@ def setup_so_ga(numAttribute, minNum, maxNum, indPb, mutPb, cxPb, numGen, sizePo
    toolbox.register("select", tools.selTournament, tournsize=sizeTour)
    return toolbox
     
-def setup_mo_ga(numAttribute, minNum, maxNum, indPb, mutPb, cxPb, numGen, sizePop, crowding, sizeTour):
+def setup_mo_ga(numAttribute, minNum, maxNum, indPb, mutPb, cxPb, numGen, sizePop, crowding, sizeTour, numCenter, data, dataCenter):
    creator.create("Fitness", base.Fitness, weights = (-1.0,1.0,) )
    creator.create("Individual", list, fitness=creator.Fitness)
 
@@ -129,7 +147,7 @@ def setup_mo_ga(numAttribute, minNum, maxNum, indPb, mutPb, cxPb, numGen, sizePo
    toolbox.register("attr_bool", random.uniform, minNum, maxNum)
    toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attr_bool, numAttribute * numCenter)
    toolbox.register("population", tools.initRepeat, list, toolbox.individual)
-   toolbox.register("evaluate", compactness_separation)
+   toolbox.register("evaluate", compactness_separation, numCenter = numCenter, data =data, dataCenter = dataCenter)
    toolbox.register('mate', tools.cxOnePoint)
    toolbox.register('mutate', tools.mutPolynomialBounded, eta = crowding, low = minNum, up = maxNum, indpb = mutPb)
    toolbox.register("NSGAselect", tools.selNSGA3, ref_points=ref_points)
@@ -205,7 +223,7 @@ def run_mo_gakmeans(datasets, numCenters, indPb = params['indPb'], mutPb = param
    minNum = min([entry for sub in data for entry in sub])
    maxNum = max([entry for sub in data for entry in sub])
 
-   toolbox = setup_mo_ga(numAttribute, minNum, maxNum, indPb, mutPb, cxPb, numGen, sizePop, crowding, sizeTour)
+   toolbox = setup_mo_ga(numAttribute, minNum, maxNum, indPb, mutPb, cxPb, numGen, sizePop, crowding, sizeTour, numCenter, data, dataCenter)
    '''
    Evolution starts
    '''
@@ -247,7 +265,7 @@ def run_mo_gakmeans(datasets, numCenters, indPb = params['indPb'], mutPb = param
    
    intraclusterDistance = best_ind.fitness.values[0]
    interclusterDistance = best_ind.fitness.values[1] 
-   return co.ClusteringObject(centers, [intraclusterDistance,interclusterDistance], end-start , [])
+   return ClusteringObject(centers, [intraclusterDistance,interclusterDistance], end-start , [])
 
 def run_kmeans(datasets, numCenters, maxiter = 100, random_state = None):
    start = time.time()
@@ -255,14 +273,14 @@ def run_kmeans(datasets, numCenters, maxiter = 100, random_state = None):
    end = time.time()
    centers = kmeans.cluster_centers_.tolist()
    intraclusterDistance = compute_total_intracluster_distance(datasets.values.tolist(), centers)
-   return co.ClusteringObject(centers, intraclusterDistance, end - start, [])
+   return ClusteringObject(centers, intraclusterDistance, end - start, [])
 
 def run_phenograph(datasets):
    memberships, graph, Q = phenograph.cluster(datasets)
    return memberships
 
-def run_scanpy_clustering(dataFile):
-    adata = sc.read_csv(dataFile, delimiter = ',')
+def run_scanpy_clustering(data):
+    adata = sc.AnnData(data)
     sc.pp.neighbors(adata)
     sc.tl.leiden(adata, resolution = 0.2)
     return adata.obs['leiden'].to_list()
